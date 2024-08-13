@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mavion</title>
+</head>
+<link rel="shortcut icon" href="asset/image/logo/IMG_20240812_070511_283.jpg" type="image/x-icon">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="loader.css">
+<link rel="stylesheet" href="switch.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<body>
+     <!-- Loader HTML -->
+     <div id="loader-container">
+        <div id="loader"></div>
+    </div>
+
+     <!-- Main Content Container -->
+     <div id="content-container">
+        <div class="con">
+    <fieldset class="content">
+        <legend>
+            <p>CLOUD MINING</p>
+            </legend>
+            <p>Mining Speed <a href="" class="mete">
+                <img src="asset/image/icon/speed1.webp" alt="Icon 1" class="mete">
+            </a> </p>
+        <FIeldset class="speed">
+        <p>
+       <img src="asset/image/logo/IMG_20240812_070511_283.jpg" alt="Icon 1" class="mete"><div class="coin-amount" >0 Mavion</div>
+            <div class="usd-balance">0 USD</div>
+            <div class="container">
+            <div class="countdown">24:00:00</div>
+        </div>
+            <div class="toggle-container">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="miningToggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+    </p>     
+    </div>
+        </FIeldset>
+        <div class="add">
+            <label class="add-button">
+                <input type="button" id="poolbutton">
+                <span class="clic-button"></span>
+            </label>
+        </div>
+    </fieldset>
+    <fieldset class="data">
+        <canvas id="cryptoChart" width="80" height="60"></canvas>
+        <script>
+            async function fetchCryptoData() {
+                const response = await fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=TON&tsym=USD&limit=7');
+                const data = await response.json();
+    
+                const labels = data.Data.Data.map(price => new Date(price.time * 1000).toLocaleDateString());
+                const prices = data.Data.Data.map(price => price.close);
+    
+                const ctx = document.getElementById('cryptoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Toncoin (TON)',
+                            data: prices,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: false
+                            },
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+    
+            fetchCryptoData();
+        </script>
+        </fieldset>
+
+<div class="footer-bar">
+    <div class="footer-icons">
+        <div class="nav-bar">
+            <div class="Icon-wrapper">
+                <a href="index.html" class="nav-item">
+                    <img src="asset/image/icon/211671_grid_icon.png" alt="Icon 1" class="icon">
+                </a>
+                <a href="asset/cart.html" class="nav-item">
+                    <img src="asset/image/icon/216477_shopping_cart_icon.png" alt="Icon 2" class="icon">
+                </a>
+                <a href="asset/withdraw.html" class="nav-item">
+                    <img src="asset/image/icon/3525379_buy_cash_finance_money_payment_icon.png" alt="Icon 3" class="icon">
+                </a>
+                <a href="url4.html" class="nav-item">
+                    <img src="asset/image/logo/IMG_20240812_070511_283.jpg" alt="Icon 4" class="icon">
+                </a>
+                <a href="url5.html" class="nav-item">
+                    <img src="asset/image/icon/326672_menu_icon (1).png" alt="Icon 5" class="icon">
+                </a>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="loader.js"></script>
+<script src="time.js"></script>
+<script src="mining.js"></script>
+</body>
+</html>

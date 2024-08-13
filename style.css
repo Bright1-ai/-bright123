@@ -1,0 +1,148 @@
+body{
+    background: radial-gradient(circle at center, #3b1c1c, #120d0d 60%, #000000);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: grid;
+    place-items: center;
+}
+.content{
+    background-color: #3b1c1c;
+    font-style: initial;
+    width: 400px;
+    justify-content: center;
+
+}
+p{
+    color: white;
+}
+
+.con {
+    position: relative;
+    top: 30px;
+    
+
+}
+
+.p1{
+  font-family: i;
+  color: white;
+}
+
+.speed {
+    background-color: #c0c0c0
+}
+
+.p1{
+    color: #000;
+}
+
+fieldset {
+    border-radius: 10px;
+}
+
+.set{
+    padding: 20px;
+}
+
+.meter {
+    width: 100px;
+    height: 100px;
+}
+
+.mete {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.footer-bar {
+    background-color: #282c34;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100px;
+}
+
+.footer-icons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-icons .icon {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 4px;
+    column-gap: 30px;
+}
+
+.data {
+    background-color: #051b47;
+    height: 400px;
+    width: 400px;
+    top: 370px;
+    position: fixed;
+}
+
+/* Basic Reset */
+body, h1, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222; /* Background color of the nav bar */
+    padding: 10px 0;
+    right: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+a{
+    margin-right: 10px;
+}
+
+.nav-item img {
+    width: 24px;  /* Width of the icons */
+    height: 24px; /* Height of the icons */
+    filter: grayscale(100%) brightness(120%);
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.nav-item img:hover {
+    transform: scale(1.2); /* Slightly enlarges icon on hover */
+    filter: none; /* Removes grayscale on hover */
+}
+
+.nav-item {
+    flex: 1; /* Distribute icons evenly across the navbar */
+    text-align: center;
+}
+ .icon-wrapper {
+    position: relative;
+    display: inline-block;
+ }
+ 
+ .icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1); /* Converts the icon color to white */
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+    filter: brightness(0) invert(1); /* Keeps the icon white on hover */
+}

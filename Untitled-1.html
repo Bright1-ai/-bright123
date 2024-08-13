@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mavion Coin Mining</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .coin-amount, .ton-balance {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #28a745;
+        }
+        .countdown {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #dc3545;
+        }
+        .toggle-container {
+            margin-top: 20px;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: #28a745;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mavion Coin Mining</h1>
+        <div class="coin-amount">0 Mavion</div>
+        <div class="ton-balance">0 TON</div>
+        <div class="countdown">24:00:00</div>
+        <div class="toggle-container">
+            <label class="toggle-switch">
+                <input type="checkbox" id="miningToggle">
+                <span class="slider round"></span>
+            </label>
+            <p>Toggle to start/stop mining</p>
+        </div>
+    </div>
+
+    <script>
+        const miningRate = 0.00001; // Mavion Coin per minute
+        const mavionToTonRate = 0.0001; // Conversion rate: 1 Mavion = 0.0001 TON
+        const miningDuration = 24 * 60 * 60; // 24 hours in seconds
+
+        // Load stored values from localStorage or set initial values
+        let minedCoins = parseFloat(localStorage.getItem('minedCoins')) || 0;
+        let remainingTime = parseInt(localStorage.getItem('remainingTime')) || miningDuration;
+        let miningActive = localStorage.getItem('miningActive') === 'true' || false;
+
+        const coinAmountElement = document.querySelector('.coin-amount');
+        const tonBalanceElement = document.querySelector('.ton-balance');
+        const countdownElement = document.querySelector('.countdown');
+        const miningToggle = document.getElementById('miningToggle');
+
+        // Update the UI with stored values
+        coinAmountElement.textContent = `${minedCoins.toFixed(5)} Mavion`;
+        updateTonBalance();
+        miningToggle.checked = miningActive;
+
+        function updateCountdown() {
+            if (remainingTime > 0) {
+                remainingTime -= 1;
+
+                // Update the countdown timer
+                const hours = Math.floor(remainingTime / 3600);
+                const minutes = Math.floor((remainingTime % 3600) / 60);
+                const seconds = remainingTime % 60;
+                countdownElement.textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Save the remaining time to localStorage
+                localStorage.setItem('remainingTime', remainingTime);
+            } else {
+                miningActive = false;
+                localStorage.setItem('miningActive', miningActive);
+                miningToggle.checked = false; // Turn off the toggle
+                alert('Mining completed! Turn the toggle on to start mining again.');
+            }
+        }
+
+        function updateMining() {
+            if (miningActive && remainingTime > 0) {
+                // Increment the mined coins by the rate per minute
+                minedCoins += miningRate;
+                coinAmountElement.textContent = `${minedCoins.toFixed(5)} Mavion`;
+
+                // Update the TON balance based on the Mavion balance
+                updateTonBalance();
+
+                // Save the mined coins to localStorage
+                localStorage.setItem('minedCoins', minedCoins);
+            }
+        }
+
+        function updateTonBalance() {
+            const tonBalance = minedCoins * mavionToTonRate;
+            tonBalanceElement.textContent = `${tonBalance.toFixed(5)} TON`;
+        }
+
+        function startMining() {
+            if (miningToggle.checked && remainingTime > 0) {
+                miningActive = true;
+            } else {
+                miningActive = false;
+            }
+            // Save the mining status to localStorage
+            localStorage.setItem('miningActive', miningActive);
+        }
+
+        // Start the countdown timer, updating every second
+        const countdownInterval = setInterval(() => {
+            updateCountdown();
+        }, 1000); // Update every 1000 milliseconds (1 second)
+
+        // Start the mining process, updating every minute
+        const miningInterval = setInterval(() => {
+            updateMining();
+        }, 60000); // Update every 60,000 milliseconds (1 minute)
+
+        // Add event listener to the toggle switch
+        miningToggle.addEventListener('change', () => {
+            startMining();
+        });
+    </script>
+</body>
+</html>
