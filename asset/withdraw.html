@@ -4,87 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Withdrawal Section</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: blueviolet;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="number"], input[type="submit"] {
-            padding: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        .message {
-            margin-top: 20px;
-        }
-    </style>
 </head>
+<link rel="stylesheet" href="../style.css">
 <body>
-    <fieldset>
-    <div class="container">
-        <fieldset>
-        <legend><h1>Withdrawal Section</h1></legend>
-        <p>Your current balance: <span id="balance">0</span> TON</p>
-        <form id="withdrawal-form">
-            <div class="form-group">
-                <label for="amount">Amount to Withdraw:</label>
-                <input type="number" id="amount" name="amount" min="1" required>
+    <div class="footer-bar">
+        <div class="footer-icons">
+            <div class="nav-bar">
+                <div class="Icon-wrapper">
+                    <a href="../index.html" class="nav-item">
+                        <img src="../asset/image/icon/211671_grid_icon.png" alt="Icon 1" class="icon">
+                    </a>
+                    <a href="cart.html" class="nav-item">
+                        <img src="../asset/image/icon/216477_shopping_cart_icon.png" alt="Icon 2" class="icon">
+                    </a>
+                    <a href="withdraw.html" class="nav-item">
+                        <img src="../asset/image/icon/3525379_buy_cash_finance_money_payment_icon.png" alt="Icon 3" class="icon">
+                    </a>
+                    <a href="mavion.html" class="nav-item">
+                        <img src="../asset/image/logo/IMG_20240812_070511_283.jpg" alt="Icon 4" class="icon">
+                    </a>
+                    <a href="setting.html" class="nav-item">
+                        <img src="../asset/image/icon/326672_menu_icon (1).png" alt="Icon 5" class="icon">
+                    </a>
+              </div>
             </div>
-            <input type="submit" value="Withdraw">
-        </form>
-        <div id="message" class="message"></div>
+        </div>
     </div>
-</fieldset>
-</fieldset>
-
-    <script>
-        document.getElementById('withdrawal-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            var amount = document.getElementById('amount').value;
-            var messageDiv = document.getElementById('message');
-
-            // Example: Replace with your backend URL and method
-            fetch('/withdraw', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ amount: amount }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    messageDiv.textContent = 'Withdrawal successful!';
-                } else {
-                    messageDiv.textContent = 'Error: ' + data.message;
-                }
-            })
-            .catch(error => {
-                messageDiv.textContent = 'Error: ' + error;
-            });
-        });
-    </script>
 </body>
 </html>

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load stored values from localStorage or set initial values
     let minedCoins = parseFloat(localStorage.getItem('minedCoins')) || 0;
-    let remainingTime = parseInt(localStorage.getItem('remainingTime')) || miningDuration;
+    let startTime = parseInt(localStorage.getItem('startTime')) || null;
     let miningActive = localStorage.getItem('miningActive') === 'true' || false;
 
     const coinAmountElement = document.querySelector('.coin-amount');
@@ -13,14 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownElement = document.querySelector('.countdown');
     const miningToggle = document.getElementById('miningToggle');
 
-    console.log("Initial values:");
-    console.log("Mined Coins:", minedCoins);
-    console.log("Remaining Time:", remainingTime);
-    console.log("Mining Active:", miningActive);
+    // Calculate remaining time based on start time and current time
+    let remainingTime = miningDuration;
+    if (startTime) {
+        const now = new Date().getTime();
+        const elapsedTime = Math.floor((now - startTime) / 1000);
+        remainingTime = miningDuration - elapsedTime;
+
+        // Simulate the mining process based on elapsed time
+        if (remainingTime > 0 && miningActive) {
+            const minedDuringOffline = (elapsedTime / 60) * miningRate;
+            minedCoins += minedDuringOffline;
+        } else {
+            remainingTime = 0;
+            miningActive = false;
+        }
+    }
 
     // Update the UI with stored values
     coinAmountElement.textContent = `${minedCoins.toFixed(5)} Mavion`;
     updateusdBalance();
+    updateCountdown();
     miningToggle.checked = miningActive;
 
     function updateCountdown() {
@@ -50,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             minedCoins += miningRate;
             coinAmountElement.textContent = `${minedCoins.toFixed(5)} Mavion`;
 
-            // Update the TON balance based on the Mavion balance
+            // Update the USD balance based on the Mavion balance
             updateusdBalance();
 
             // Save the mined coins to localStorage
@@ -66,9 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function startMining() {
         if (miningToggle.checked && remainingTime > 0) {
             miningActive = true;
+            startTime = startTime || new Date().getTime(); // Set start time if not already set
+            localStorage.setItem('startTime', startTime);
         } else {
             miningActive = false;
+            startTime = null;
+            localStorage.removeItem('startTime');
         }
+
         // Save the mining status to localStorage
         localStorage.setItem('miningActive', miningActive);
     }

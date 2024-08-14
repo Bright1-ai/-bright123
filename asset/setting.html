@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: radial-gradient(circle at center, #3b1c1c, #120d0d 60%, #000000);
+            color: #333;
+        }
+
+    .all {
+        background-color: #000000;
+        position: fixed;
+        top: 260px;
+   
+    }
+
+    .al {
+        background-color: #000000;
+        position: fixed;
+        top: 350px;
+   
+    }
+
+    .container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            position: fixed;
+            top: 20px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .username-box {
+            margin-top: 20px;
+        }
+        .username-display {
+            font-size: 20px;
+            color: #007bff;
+        }
+        .username-input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .save-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+
+        .telegram-button-container {
+    text-align: center;
+}
+
+.telegram-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #0088cc;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.telegram-button:hover {
+    background-color: #006699;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.email-button-container {
+    text-align: center;
+}
+
+.email-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #D44638;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.email-button:hover {
+    background-color: #B23121;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+</style>
+<link rel="stylesheet" href="../style.css">
+<body>
+    <div class="container">
+        <h1>Username</h1>
+        <div id="telegramLogin"></div>
+        <div class="username-box">
+            <div class="username-display" id="usernameDisplay">User Name</div>
+            <input type="text" id="usernameInput" class="username-input" placeholder="Enter new username">
+            <button class="save-button" id="saveButton">Save</button>
+        </div>
+    </div>
+    
+        <fieldset class="all">
+            <div class="telegram-button-container">
+                <a href="https://t.me/mavioncommunity" target="_blank" class="telegram-button">
+                    Join Our Telegram Channel
+                </a>
+            </div>
+        </fieldset>
+ 
+        <fieldset class="al">
+        <div class="email-button-container">
+            <a href="mailto:updatecommunity1@gmail.com" class="email-button">
+                Email Us If You Have Any Complaint
+            </a>
+        </div>
+    </fieldset>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve username from localStorage or set default
+            let username = localStorage.getItem('username') || 'User Name';
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const usernameInput = document.getElementById('usernameInput');
+            const saveButton = document.getElementById('saveButton');
+
+            // Display the username
+            usernameDisplay.textContent = username;
+
+            // Event listener for the Save button
+            saveButton.addEventListener('click', () => {
+                const newUsername = usernameInput.value.trim();
+                if (newUsername) {
+                    username = newUsername;
+                    localStorage.setItem('username', username);
+                    usernameDisplay.textContent = username;
+                }
+            });
+        });
+    </script>
+
+<div class="footer-bar">
+    <div class="footer-icons">
+        <div class="nav-bar">
+            <div class="Icon-wrapper">
+                <a href="../index.html" class="nav-item">
+                    <img src="../asset/image/icon/211671_grid_icon.png" alt="Icon 1" class="icon">
+                </a>
+                <a href="cart.html" class="nav-item">
+                    <img src="../asset/image/icon/216477_shopping_cart_icon.png" alt="Icon 2" class="icon">
+                </a>
+                <a href="withdraw.html" class="nav-item">
+                    <img src="../asset/image/icon/3525379_buy_cash_finance_money_payment_icon.png" alt="Icon 3" class="icon">
+                </a>
+                <a href="mavion.html" class="nav-item">
+                    <img src="../asset/image/logo/IMG_20240812_070511_283.jpg" alt="Icon 4" class="icon">
+                </a>
+                <a href="setting.html" class="nav-item">
+                    <img src="../asset/image/icon/326672_menu_icon (1).png" alt="Icon 5" class="icon">
+                </a>
+          </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
