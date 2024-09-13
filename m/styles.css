@@ -1,0 +1,94 @@
+/* Fixed, Rounded Bottom Navigation Bar */
+.navbar {
+    position: fixed; /* Fixed at the bottom */
+    bottom: 20px; /* Adds margin from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90%; /* Navbar width */
+    background: linear-gradient(45deg, #1f1c2c, #928dab); /* Futuristic gradient */
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    border-radius: 30px; /* Rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow for floating effect */
+    border: 1px solid #444; /* Subtle border */
+    z-index: 1000; /* Ensures the navbar stays on top */
+}
+
+/* Navbar Items */
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Space between items */
+}
+
+.navbar li {
+    flex-grow: 1; /* Ensures items are evenly spaced */
+    text-align: center; /* Center align the text */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff; /* White text for contrast */
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover Effect */
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Slight glow on hover */
+    color: #00ffea; /* Neon color */
+    box-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea; /* Glowing effect */
+    transition: all 0.3s ease;
+}
+
+/* Ensure Content Ends Before Navigation */
+body {
+    font-family: 'Poppins', sans-serif; /* Consistent font */
+    background-color: #1a1a2e; /* Dark background for contrast */
+    color: #ffffff; /* Light text for readability */
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px; /* Adds space above the fixed nav */
+}
+
+/* Container Styling for Consistency */
+.container {
+    padding: 20px;
+}
+
+/* Button Styling */
+.button {
+    background-color: #1DB954;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Button shadow effect */
+}
+
+.button:hover {
+    background-color: #00A8E8; /* Brighter hover color */
+}
+
+/* Additional Styling */
+.card {
+    background-color: #252849; /* Dark card background */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #e6e6e6; /* Light card text color */
+}

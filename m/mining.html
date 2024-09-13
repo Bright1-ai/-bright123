@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mavion Mining App - Mining</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="st.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="floating-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mining.html">Mining</a></li>
+            <li><a href="wallet.html">Wallet</a></li>
+            <li><a href="transactions.html">Transactions</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mining Section -->
+    <section class="card">
+        <h2>Active Mining</h2>
+        <button class="button" id="startMining">Start Mining</button>
+
+        <!-- Mining Rigs -->
+        <div id="miningRigs" style="display: none;">
+            <div class="rig" id="rig1">
+                <p>Mining Speed: <span id="miningSpeed">0 H/s</span></p>
+            </div>
+            <div class="rig" id="rig2">
+                <p>Mined Coins: <span id="minedCoinsDisplay">0 Mavion Coins</span></p>
+            </div>
+            <!-- Vertical Timer -->
+            <div class="vertical-timer" id="miningTimer">08:00:00</div>
+        </div>
+
+        <!-- Claim Coins Button -->
+        <button class="button" id="claimCoins" style="display: none;">Claim Coins</button>
+    </section>
+
+    <script src="/asset/mining.js/mining.js"></script>
+</body>
+
+</html>
